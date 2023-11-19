@@ -45,10 +45,13 @@ function commandParser(player, message) {
                 break;
         }
     } catch(exception) {
-        if(typeof exception === "string" && exception === "invalid_usage") {
-            player.sendMessage(STYLE_FAILURE+"Invalid usage of ?"+command);
-            return;
+        if(typeof exception !== "string") { throw exception; }
+        switch(exception) {
+            case 'invalid_usage':
+                player.sendMessage(STYLE_FAILURE+"Invalid usage of ?"+command);
+                return;
+            default:
+                throw exception;
         }
-        throw exception;
     }
 }
