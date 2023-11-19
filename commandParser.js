@@ -8,6 +8,10 @@ function commandParser(player, message) {
         case 'broadcast':
             broadcast(player, args);
             break;
+        case 'ce':
+        case 'cleareffect':
+            cleareffect(player, args);
+            break;
         case 'n':
         case 'nick':
             nick(player, args);
