@@ -28,7 +28,7 @@ function admin(player, args) {
         case 'add':
 
             // Check args length
-            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?nick command.'); return; }
+            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.'); return; }
 
             // Get target player
             var targetPlayer = API.getPlayer(args[1]);
@@ -47,7 +47,7 @@ function admin(player, args) {
         case 'remove':
 
             // Check args length
-            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?nick command.'); return; }
+            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.'); return; }
 
             // Get target player
             var targetPlayer = API.getPlayer(args[1]);
@@ -65,7 +65,7 @@ function admin(player, args) {
             break;
 
         default:
-            player.sendMessage(STYLE_RESET + 'Invalid usage of ?nick command.');
+            player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.');
             break;
     }
 }
