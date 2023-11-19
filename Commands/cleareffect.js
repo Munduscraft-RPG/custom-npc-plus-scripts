@@ -5,8 +5,7 @@ function cleareffect(player,args){
             player.sendMessage(STYLE_SUCCESS+'Potion effects cleared ');
             return;
         case 1:
-            var targetPlayer=API.getPlayer(args[0]);
-            if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE+'Target player not found.'); return; }
+            var targetPlayer = getPlayerByName(args[0]);
             player.sendMessage(STYLE_SUCCESS+'Potion effects cleared for target ' + args[0]);
             targetPlayer.clearPotionEffects();
             return;

@@ -30,9 +30,8 @@ function admin(player, args) {
             // Check args length
             if(args.length !== 2) {throw "invalid_usage";}
 
-            // Get target player
-            var targetPlayer = API.getPlayer(args[1]);
-            if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE + 'Target player not found.'); return; }
+            // Check player is valid
+            getPlayerByName(args[1]);
 
             // Update admin list
             var adminListStr = API.getIWorld(0).getStoredData('adminList');
@@ -49,9 +48,8 @@ function admin(player, args) {
             // Check args length
             if(args.length !== 2) {throw "invalid_usage";}
 
-            // Get target player
-            var targetPlayer = API.getPlayer(args[1]);
-            if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE + 'Target player not found.'); return; }
+            // Check player is valid
+            getPlayerByName(args[1]);
 
             // Update adminList
             var adminListStr = API.getIWorld(0).getStoredData('adminList');

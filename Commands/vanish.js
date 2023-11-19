@@ -13,8 +13,7 @@ function vanish(player, args) {
                 return;
             }
         case 1:
-            var targetPlayer = API.getPlayer(args[0]);
-            if (!targetPlayer) { player.sendMessage(STYLE_FAILURE+'Target player not found.'); return; }
+            var targetPlayer = getPlayerByName(args[0]);
             if (targetPlayer.getPotionEffect(14) !== 127) {
                 targetPlayer.addPotionEffect(14, 9999, 127, true);
                 targetPlayer.sendMessage(STYLE_SUCCESS+args[0]+' has now vanished');
