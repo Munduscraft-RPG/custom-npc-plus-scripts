@@ -5,23 +5,23 @@ function vanish(player, args) {
         case 0:
             if (player.getPotionEffect(14) !== 127) {
                 player.addPotionEffect(14, 9999, 127, true);
-                player.sendMessage(STYLE_SUCCESS+'Vanished');
+                player.sendMessage(STYLE_SUCCESS+'You are now vanished');
                 return;
             } else {
                 player.addPotionEffect(14, 0, 127, true);
-                player.sendMessage(STYLE_FAILURE+'Unvanished');
+                player.sendMessage(STYLE_FAILURE+'You have now unvanished');
                 return;
             }
         case 1:
             var targetPlayer = API.getPlayer(args[0]);
-            if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE+'Target player not found.'); return; }
+            if (!targetPlayer) { player.sendMessage(STYLE_FAILURE+'Target player not found.'); return; }
             if (targetPlayer.getPotionEffect(14) !== 127) {
                 targetPlayer.addPotionEffect(14, 9999, 127, true);
-                targetPlayer.sendMessage(STYLE_SUCCESS+'Vanished');
+                targetPlayer.sendMessage(STYLE_SUCCESS+args[0]+' has now vanished');
                 return;
             } else {
                 targetPlayer.addPotionEffect(14, 0, 127, true);
-                targetPlayer.sendMessage(STYLE_FAILURE+'Unvanished');
+                targetPlayer.sendMessage(STYLE_FAILURE+args[0]' has now unvanished');
                 return;
             }
         default:
