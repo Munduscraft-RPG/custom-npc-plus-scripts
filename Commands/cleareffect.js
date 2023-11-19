@@ -11,7 +11,6 @@ function cleareffect(player,args){
             targetPlayer.clearPotionEffects();
             return;
         default:
-            player.sendMessage(STYLE_FAILURE+'No effects Removed');       
-            break;
+            throw "invalid_usage";
     }
 }

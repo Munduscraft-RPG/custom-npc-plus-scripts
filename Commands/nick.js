@@ -11,8 +11,5 @@ function nick(player, args) {
         target.setStoredData('nickname', targetNick);
         player.sendMessage(STYLE_SUCCESS+'Nickname for '+STYLE_RESET+args[0]+STYLE_SUCCESS+' set to: '+STYLE_RESET+targetNick);
         return;
-    } else {
-        player.sendMessage(STYLE_RESET+'Invalid usage of ?nick command.');
-        return;
-    }
+    } else {throw "invalid_usage";}
 }

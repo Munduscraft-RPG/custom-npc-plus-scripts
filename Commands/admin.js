@@ -5,7 +5,7 @@ function admin(player, args) {
         case 'list':
 
             // Check args length
-            if(args.length !== 1) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?nick command.'); return; }
+            if(args.length !== 1) {throw "invalid_usage";}
 
             // Get admin list
             var adminListStr = API.getIWorld(0).getStoredData('adminList');
@@ -28,7 +28,7 @@ function admin(player, args) {
         case 'add':
 
             // Check args length
-            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.'); return; }
+            if(args.length !== 2) {throw "invalid_usage";}
 
             // Get target player
             var targetPlayer = API.getPlayer(args[1]);
@@ -47,7 +47,7 @@ function admin(player, args) {
         case 'remove':
 
             // Check args length
-            if(args.length !== 2) {player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.'); return; }
+            if(args.length !== 2) {throw "invalid_usage";}
 
             // Get target player
             var targetPlayer = API.getPlayer(args[1]);
@@ -65,7 +65,6 @@ function admin(player, args) {
             break;
 
         default:
-            player.sendMessage(STYLE_RESET + 'Invalid usage of ?admin command.');
-            break;
+            throw "invalid_usage";
     }
 }

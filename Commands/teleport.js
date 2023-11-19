@@ -21,7 +21,7 @@ function teleport(player, args) {
 
         // Three arguments: Teleport self to x y z coordinates
         case 3:
-            if(!NUMERIC_REGEX.test(args[0]) || !NUMERIC_REGEX.test(args[1]) || !NUMERIC_REGEX.test(args[2])) { player.sendMessage(STYLE_FAILURE+'Invalid usage of ?teleport command.'); return; }
+            if(!NUMERIC_REGEX.test(args[0]) || !NUMERIC_REGEX.test(args[1]) || !NUMERIC_REGEX.test(args[2])) {throw "invalid_usage";}
             player.sendMessage(STYLE_SUCCESS+'Teleporting to ('+args[0]+','+args[1]+','+args[2]+') in dimension '+player.getDimension());
             player.setPosition(args[0], args[1], args[2], player.getDimension());
             break;

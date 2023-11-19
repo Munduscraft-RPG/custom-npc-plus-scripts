@@ -25,7 +25,6 @@ function vanish(player, args) {
                 return;
             }
         default:
-            player.sendMessage(STYLE_FAILURE+'Invalid usage of ?v command.');
-            break;
+            throw "invalid_usage";
     }
 }
