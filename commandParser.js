@@ -50,6 +50,9 @@ function commandParser(player, message) {
             case 'invalid_usage':
                 player.sendMessage(STYLE_FAILURE+"Invalid usage of ?"+command);
                 return;
+            case 'invalid_player':
+                player.sendMessage(STYLE_FAILURE+'Invalid player');
+                return;
             default:
                 throw exception;
         }
