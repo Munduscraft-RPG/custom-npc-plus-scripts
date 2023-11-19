@@ -4,6 +4,10 @@ function commandParser(player, message) {
     var args = parts.slice(1);
 
     switch (command) {
+        case 'a':
+        case 'admin':
+            admin(player, args);
+            break;
         case 'b':
         case 'broadcast':
             broadcast(player, args);
