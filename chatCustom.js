@@ -103,7 +103,6 @@ function chatCustom(event) {
     for(var i=0; i<nearbyPlayers.length; i++) {
         nearbyPlayers[i].sendMessage(message);
     }
-    return;
 }
 
 // Function that takes in a message and distorts it to be drunk text

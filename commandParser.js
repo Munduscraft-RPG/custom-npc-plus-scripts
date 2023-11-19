@@ -39,5 +39,4 @@ function commandParser(player, message) {
             player.sendMessage(STYLE_FAILURE + 'Unknown command');
             break;
     }
-    return;
 }
