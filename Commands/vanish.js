@@ -21,7 +21,7 @@ function vanish(player, args) {
                 return;
             } else {
                 targetPlayer.addPotionEffect(14, 0, 127, true);
-                targetPlayer.sendMessage(STYLE_FAILURE+args[0]' has now unvanished');
+                targetPlayer.sendMessage(STYLE_FAILURE+args[0]+' has now unvanished');
                 return;
             }
         default:
