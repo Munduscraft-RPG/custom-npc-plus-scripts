@@ -35,7 +35,6 @@ function admin(player, args) {
             if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE + 'Target player not found.'); return; }
 
             // Update admin list
-            targetPlayer.setStoredData("isAdmin", 1);
             var adminListStr = API.getIWorld(0).getStoredData('adminList');
             var adminList = JSON.parse(adminListStr || '[]');
             if (adminList.indexOf(args[1]) === -1) {
@@ -53,9 +52,6 @@ function admin(player, args) {
             // Get target player
             var targetPlayer = API.getPlayer(args[1]);
             if (targetPlayer === null) { player.sendMessage(STYLE_FAILURE + 'Target player not found.'); return; }
-
-            // Set player data
-            targetPlayer.setStoredData("isAdmin", 0);
 
             // Update adminList
             var adminListStr = API.getIWorld(0).getStoredData('adminList');
