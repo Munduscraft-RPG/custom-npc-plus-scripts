@@ -41,10 +41,7 @@ var TALK_RANGE = 16;
 var YELL_RANGE = 40;
 var WHISPER_RANGE = 3;
 
-function chat(event) {
-
-    //Cancel all chat events
-    event.setCancelled(true);
+function chatCustom(event) {
 
     //Get message string
     var message = event.getMessage();
