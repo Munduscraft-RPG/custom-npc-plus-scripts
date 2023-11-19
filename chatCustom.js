@@ -91,6 +91,16 @@ function chatCustom(event) {
     // Send message to self
     player.sendMessage(message);
 
+    // Get list of admins
+    var adminList = JSON.parse(API.getIWorld(0).getStoredData("adminList") || '[]');
+
+    // Send message to each admin
+    for(var i=0;i<adminList.length;i++) {
+        var admin = API.getPlayer(adminList[i]);
+        if(!admin || admin === player ) { continue; }
+        admin.sendMessage(message);
+    }
+
     // Get players in range
     var nearbyPlayers = player.getSurroundingEntities(range, 1);
 
@@ -101,6 +111,7 @@ function chatCustom(event) {
 
     // Send messages to all players in range
     for(var i=0; i<nearbyPlayers.length; i++) {
+        if(adminList.indexOf(nearbyPlayers[i].getName()) !== -1) { continue; }
         nearbyPlayers[i].sendMessage(message);
     }
 }
