@@ -20,6 +20,9 @@ function commandParser(player, message) {
         case 'reload':
             reload(player, args);
             break;
+        case 'ride':
+            ride(player, args);
+            break;
         case 'tp':
         case 'teleport':
             teleport(player, args);
