@@ -17,6 +17,10 @@ function commandParser(player, message) {
             case 'cleareffect':
                 cleareffect(player, args);
                 break;
+            case 'k':
+            case 'kill':
+                kill(player, args);
+                break;
             case 'n':
             case 'nick':
                 nick(player, args);
