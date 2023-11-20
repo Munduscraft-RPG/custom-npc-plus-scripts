@@ -49,7 +49,7 @@ function chatCustom(event) {
     //Get player object
     var player = event.getPlayer();
 
-    //Parse q commands seperate from chat
+    //Parse q commands separate from chat
     if (message.startsWith('?')) {
         commandParser(player, message);
         return;

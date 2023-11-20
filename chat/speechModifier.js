@@ -60,7 +60,7 @@ function speechModifier(type, message) {
 
     // Start building the new message
     var newMessage = '';
-    // For each charectar in the message
+    // For each character in the message
     var i = 0;
     while (i < message.length) {
         var replaced = false;
@@ -79,7 +79,7 @@ function speechModifier(type, message) {
                 // Make change
                 newMessage += rule.to;
 
-                // Skip however many charectars are needed to get to the next unmodified charectar
+                // Skip however many characters are needed to get to the next unmodified character
                 i += fromLength;
 
                 replaced = true;
@@ -92,7 +92,7 @@ function speechModifier(type, message) {
             // Do not change anything
             newMessage += message[i];
 
-            // Move to next charectar
+            // Move to next character
             i++;
         }
     }
