@@ -24,6 +24,12 @@ function commandParser(player, message) {
             case 'extinguish':
                 extinguish(player, args);
                 break;
+            case 'head':
+            case 'helmet':
+            case 'helm':
+            case 'hat':
+                hat(player, args);
+                break;
             case 'k':
             case 'kill':
                 kill(player, args);
