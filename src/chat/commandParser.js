@@ -13,6 +13,9 @@ function commandParser(player, message) {
             case 'broadcast':
                 broadcast(player, args);
                 break;
+            case 'burn':
+                burn(player, args);
+                break;
             case 'ce':
             case 'cleareffect':
                 cleareffect(player, args);
