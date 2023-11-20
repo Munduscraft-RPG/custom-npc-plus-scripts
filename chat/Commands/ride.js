@@ -3,25 +3,26 @@ function ride(player, args) {
     switch(args.length) {
         case 0:
 
+            var lookingAt;
+
             // Get looking at entity
-            var lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true)
+            lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true);
             if(lookingAt.length === 0) { return; }
 
             // Ride it
-            player.setMount(lookingAt[0])
+            player.setMount(lookingAt[0]);
             return;
-
         case 1:
 
             // Get target player
             var targetPlayer = getPlayerByName(args[0]);
 
             // Get looking at entity
-            var lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true)
+            lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true);
             if(lookingAt.length === 0) { return; }
 
             // Ride it
-            targetPlayer.setMount(lookingAt[0])
+            targetPlayer.setMount(lookingAt[0]);
             return;
 
         default:
