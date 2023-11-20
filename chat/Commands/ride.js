@@ -1,9 +1,9 @@
 function ride(player, args) {
 
+    var lookingAt;
+
     switch(args.length) {
         case 0:
-
-            var lookingAt;
 
             // Get looking at entity
             lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true);
