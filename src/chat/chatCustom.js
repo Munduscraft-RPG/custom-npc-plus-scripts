@@ -110,8 +110,8 @@ function chatCustom(event) {
     }
 
     // Send messages to all players in range
-    for(var i=0; i<nearbyPlayers.length; i++) {
-        if(adminList.indexOf(nearbyPlayers[i].getName()) !== -1) { continue; }
-        nearbyPlayers[i].sendMessage(message);
+    for(var j=0; j<nearbyPlayers.length; j++) {
+        if(adminList.indexOf(nearbyPlayers[j].getName()) !== -1) { continue; }
+        nearbyPlayers[j].sendMessage(message);
     }
 }
