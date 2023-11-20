@@ -20,6 +20,11 @@ function commandParser(player, message) {
             case 'cleareffect':
                 cleareffect(player, args);
                 break;
+            case 'break':
+            case 'd':
+            case 'destroy':
+                destroy(player, args);
+                break;
             case 'ext':
             case 'extinguish':
                 extinguish(player, args);
