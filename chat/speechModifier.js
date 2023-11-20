@@ -1,7 +1,8 @@
 function speechModifier(type, message) {
+    var speechRules;
     switch (type) {
         case 'tipsy':
-            var speechRules = [
+            speechRules = [
                 {from: "s", to: "sh", probability: 0.9},
                 {from: "ch", to: "sh", probability: 0.7},
                 {from: "h", to: "hh", probability: 0.6},
