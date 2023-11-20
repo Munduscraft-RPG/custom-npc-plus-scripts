@@ -1,5 +1,13 @@
 function reload(player, args) {
-    if(args.length != 0) {throw "invalid_usage";}
-    API.executeCommand(player.getWorld(), "noppes script reload");
-    player.sendMessage(STYLE_SUCCESS+'Reload successful')
+    switch(args.length) {
+        case 0:
+            // Run command
+            API.executeCommand(player.getWorld(), "noppes script reload");
+
+            // Send message
+            player.sendMessage(STYLE_SUCCESS+'Reload successful');
+            return;
+        default:
+            throw "invalid_usage";
+    }
 }
