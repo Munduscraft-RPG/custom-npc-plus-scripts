@@ -2,7 +2,7 @@ var ALL_STYLE_RESET_REGEX = /&r/g;
 var YELL_REGEX = /^(?:(?:&[a-z])|[^a-z\n])*!.*$/;
 var WHISPER_REGEX = /^[^A-Z!]*\.{3}$/;
 var NUMERIC_REGEX = /^-?\d+$/;
-var EMPHASIS_REGEX = /\*(.*?)\*/g;
+var EMPHASIS_REGEX = /\/(.*?)\//g;
 
 //Vanilla Styles
 var STYLE_BLACK = '&0';
@@ -56,7 +56,7 @@ function chatCustom(event) {
     }
 
     // Add emphasis support
-    message = message.replace(/\*(.*?)\*/g, STYLE_EMPHASIS+'$1'+STYLE_RESET);
+    message = message.replace(EMPHASIS_REGEX, STYLE_EMPHASIS+'$1'+STYLE_RESET);
 
     // Define range variable
     var range;
