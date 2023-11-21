@@ -49,9 +49,6 @@ function admin(player, args) {
             // Check args length
             if(args.length !== 2) {throw "invalid_usage";}
 
-            // Check player is valid
-            getPlayerByName(args[1]);
-
             // Update adminList
             var index = adminList.indexOf(args[1]);
             if (index > -1) {
