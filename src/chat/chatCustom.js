@@ -111,7 +111,7 @@ function chatCustom(event) {
 
     // Send messages to all players in range
     for(var j=0; j<nearbyPlayers.length; j++) {
-        if(adminList.indexOf(nearbyPlayers[j].getName()) !== -1) { continue; }
+        if(isAdmin(nearbyPlayers[j])) { continue; }
         nearbyPlayers[j].sendMessage(message);
     }
 }

@@ -1,5 +1,7 @@
 function teleport(player, args) {
 
+    checkAdmin(player);
+
     var targetPlayer;
     var victimPlayer;
 

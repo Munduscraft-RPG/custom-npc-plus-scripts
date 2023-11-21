@@ -1,4 +1,7 @@
 function destroy(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
             var block = player.getLookingAtBlock(5);

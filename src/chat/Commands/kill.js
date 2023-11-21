@@ -1,4 +1,7 @@
 function kill(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
 

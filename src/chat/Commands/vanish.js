@@ -1,5 +1,7 @@
 function vanish(player, args) {
 
+    checkAdmin(player);
+
     // Check if correct number of args
     switch(args.length) {
         case 0:

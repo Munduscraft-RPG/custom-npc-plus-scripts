@@ -1,5 +1,7 @@
 function ride(player, args) {
 
+    checkAdmin(player);
+
     var lookingAt;
 
     switch(args.length) {

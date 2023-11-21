@@ -1,4 +1,7 @@
 function nick(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length){
         case 1:
 

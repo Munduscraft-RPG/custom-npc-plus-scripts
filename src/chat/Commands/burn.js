@@ -1,4 +1,7 @@
 function burn(player, args) {
+
+    checkAdmin(player);
+
     var burningSeconds;
     switch(args.length) {
         case 1:

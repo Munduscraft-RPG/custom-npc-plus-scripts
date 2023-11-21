@@ -75,6 +75,9 @@ function commandParser(player, message) {
             case 'invalid_player':
                 player.sendMessage(STYLE_FAILURE+'Invalid player');
                 return;
+            case 'permission_denied':
+                player.sendMessage(STYLE_FAILURE+'Permission denied');
+                return;
             default:
                 throw exception;
         }

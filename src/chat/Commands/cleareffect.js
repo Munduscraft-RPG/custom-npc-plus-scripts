@@ -1,4 +1,7 @@
 function cleareffect(player,args){
+
+    checkAdmin(player);
+
     switch(args.length){
         case 0:
             player.clearPotionEffects();

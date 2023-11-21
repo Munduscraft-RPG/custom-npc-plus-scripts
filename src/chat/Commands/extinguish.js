@@ -1,4 +1,7 @@
 function extinguish(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
             player.extinguish();

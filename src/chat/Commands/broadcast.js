@@ -1,4 +1,7 @@
 function broadcast(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 1:
             // Get all players

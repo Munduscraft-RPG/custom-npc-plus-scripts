@@ -1,4 +1,7 @@
 function ping(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
             // Send message

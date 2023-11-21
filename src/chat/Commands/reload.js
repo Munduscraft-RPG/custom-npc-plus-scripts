@@ -1,4 +1,7 @@
 function reload(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
             // Run command

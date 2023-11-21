@@ -1,5 +1,8 @@
 function admin(player, args) {
 
+    // Disabled for testing
+    // checkAdmin(player);
+
     // Get admin list
     var adminList = JSON.parse(API.getIWorld(0).getStoredData('adminList') || '[]');
 

@@ -1,4 +1,7 @@
 function hat(player, args) {
+
+    checkAdmin(player);
+
     switch(args.length) {
         case 0:
             player.setArmor(3, player.getHeldItem());
