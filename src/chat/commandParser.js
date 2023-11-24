@@ -29,6 +29,9 @@ function commandParser(player, message) {
             case 'extinguish':
                 extinguish(player, args);
                 break;
+            case 'fireball':
+                fireball(player, args);
+                break;
             case 'head':
             case 'helmet':
             case 'helm':
