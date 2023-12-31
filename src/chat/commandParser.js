@@ -57,6 +57,10 @@ function commandParser(player, message) {
             case 'ride':
                 ride(player, args);
                 break;
+            case 'ss':
+            case 'setspawn':
+                setspawn(player, args);
+                break;
             case 'tp':
             case 'teleport':
                 teleport(player, args);
