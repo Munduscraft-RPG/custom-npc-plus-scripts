@@ -1,5 +1,5 @@
-function setspawn(player, args){
-    if (args.length > 0){throw 'invalid_usage'}
+function setspawn(player){
+    //if (args.length > 0){throw 'invalid_usage';}
     checkAdmin(player);
     var position = player.getPosition();
     var coords = [position.x, position.y, position.z];
@@ -7,5 +7,6 @@ function setspawn(player, args){
     API.getIWorld(0).setStoredData('spawnX',coords[0]);
     API.getIWorld(0).setStoredData('spawnY',coords[1]);
     API.getIWorld(0).setStoredData('spawnZ',coords[2]);
-    player.sendMessage(STYLE_SUCCESS+'Spawn point set');
+    player.sendMessage(STYLE_SUCCESS+'Spawn/Ko point set');
+    player.sendMessage(API.getIWorld(0).getStoredData('spawnX'));
 }

@@ -11,3 +11,7 @@ function damaged(event){
     event.setCancelled(true);
     damagedCustom(event);
 }
+
+function timer(event){
+    timerCustom(event);
+}
