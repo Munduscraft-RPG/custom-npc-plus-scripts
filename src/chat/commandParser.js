@@ -57,6 +57,10 @@ function commandParser(player, message) {
             case 'ride':
                 ride(player, args);
                 break;
+            case 'ss':
+            case 'setspawn':
+                setspawn(player);
+                break;
             case 'tp':
             case 'teleport':
                 teleport(player, args);
@@ -64,6 +68,9 @@ function commandParser(player, message) {
             case 'v':
             case 'vanish':
                 vanish(player, args);
+                break;
+            case 'test':
+                testFeature(player,args);
                 break;
             default:
                 player.sendMessage(STYLE_FAILURE + 'Unknown command');
