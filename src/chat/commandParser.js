@@ -20,6 +20,9 @@ function commandParser(player, message) {
             case 'cleareffect':
                 cleareffect(player, args);
                 break;
+            case 'data':
+                data(player, args);
+                break;
             case 'break':
             case 'd':
             case 'destroy':
@@ -31,6 +34,9 @@ function commandParser(player, message) {
                 break;
             case 'fireball':
                 fireball(player, args);
+                break;
+            case 'follow':
+                follow(player, args);
                 break;
             case 'head':
             case 'helmet':
@@ -56,6 +62,9 @@ function commandParser(player, message) {
                 break;
             case 'ride':
                 ride(player, args);
+                break;
+            case 'talk':
+                talk(player, args);
                 break;
             case 'ss':
             case 'setspawn':
