@@ -13,7 +13,7 @@ function burn(player, args) {
             return;
         case 2:
             if(!NUMERIC_REGEX.test(args[1])) { throw "invalid_usage"; }
-            burningSeconds = args[1];
+            burningSeconds = args[1] / 20;
             var targetPlayer = getPlayerByName(args[0]);
             player.extinguish();
             targetPlayer.setBurning(burningSeconds);
