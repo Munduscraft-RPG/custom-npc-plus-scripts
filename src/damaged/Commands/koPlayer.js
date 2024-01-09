@@ -7,7 +7,7 @@ function koPlayer(player){
     var potionIds = [];
     var potionAmps = [];
     var potionDurs = [];
-    var koTime = koTimerSet(); //sets koTimer start value
+    var koTime = 100; //sets koTimer start value
     var corpse = API.spawnNPC(API.getIWorld(player.getDimension()),player.getPosition());
     //Saves players current potion effects
     while (iterator.hasNext()) {
