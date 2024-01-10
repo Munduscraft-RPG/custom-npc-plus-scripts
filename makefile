@@ -25,5 +25,5 @@ $(BUILD_DIR):
 
 clean:
 	@echo "Cleaning up..."
-	@rm -rf
-
+	@rm -rf $(BUILD_DIR)
+	@echo "Clean complete."
