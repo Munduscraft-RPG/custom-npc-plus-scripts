@@ -63,6 +63,9 @@ function commandParser(player, message) {
             case 'ride':
                 ride(player, args);
                 break;
+            case 'roll':
+                diceroll(player, args);
+                break;
             case 'talk':
                 talk(player, args);
                 break;
