@@ -66,6 +66,9 @@ function commandParser(player, message) {
             case 'roll':
                 diceroll(player, args);
                 break;
+            case 'sayas':
+                sayas(player, args);
+                break;
             case 'talk':
                 talk(player, args);
                 break;
