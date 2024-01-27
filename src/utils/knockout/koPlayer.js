@@ -8,11 +8,12 @@ function koPlayer(player){
     var potionIds = [];
     var potionAmps = [];
     var potionDurs = [];
-    var koTime = 100; //sets koTimer start value
     var corpse = API.spawnNPC(API.getIWorld(player.getDimension()),player.getPosition());
     var factions = API.getFactions().list();
     var factionId = 0;
     var factionName = '';
+    var minTime = 100;
+    var maxTime = 1000;
     //Saves players current potion effects
     while(iterator.hasNext()) {
         var potionEffect = iterator.next();
@@ -55,6 +56,6 @@ function koPlayer(player){
     corpse.setSkinUrl('https://mineskin.eu/skin/'+player.getName());
     corpse.updateAI();
     corpse.updateClient();
-    corpse.getTimers().start(100, koTime, false); //Starts knockout timer
+    corpse.getTimers().start(100, koRandomizer(minTime, maxTime), false); //Starts knockout timer
     player.sendMessage(corpse.getTimers().has(100));
 } 
