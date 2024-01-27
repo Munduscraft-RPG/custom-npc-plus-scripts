@@ -9,6 +9,7 @@ function revivePlayer(npc){
     for (var i = 0; i < potionIds.length; ++i){
         player.addPotionEffect(potionIds[i],potionDurs[i],potionAmps[i],true);
     }
+    player.setStoredData('isKo',0);
     npc.setRespawnCycle(3);
     npc.hideKilledBody(1);
     npc.kill();
