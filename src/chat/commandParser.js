@@ -52,6 +52,10 @@ function commandParser(player, message) {
             case 'nick':
                 nick(player, args);
                 break;
+            case 'ol':
+            case 'ollama':
+                ollama(player, args);
+                break;
             case 'p':
             case 'ping':
                 ping(player, args);
@@ -76,6 +80,8 @@ function commandParser(player, message) {
             case 'setspawn':
                 setspawn(player);
                 break;
+            case 'sleeper':
+                createSleeper(player);
             case 'tp':
             case 'teleport':
                 teleport(player, args);
@@ -86,6 +92,9 @@ function commandParser(player, message) {
                 break;
             case 'test':
                 testFeature(player,args);
+                break;
+            case 'timers':
+                timers(player,args);
                 break;
             default:
                 player.sendMessage(STYLE_FAILURE + 'Unknown command');

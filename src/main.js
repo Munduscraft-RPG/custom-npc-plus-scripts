@@ -10,3 +10,7 @@ function damaged(event){
 function timer(event){
     timerCustom(event);
 }
+
+function attack(event) {
+    attackCustom(event)
+}

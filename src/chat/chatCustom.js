@@ -49,24 +49,30 @@ function chatCustom(event) {
     }
 
     // If the player is drunk, use drunk text distortion
-    if(player.hasStoredData('isTipsy') && player.getStoredData('isTipsy')) {
+    if(player.hasStoredData('isTipsy') && player.getStoredData('isTipsy') === 1) {
         message = speechModifier('tipsy', message);
     }
 
     // Format message into a full chat message
-    message = name + STYLE_RESET + ': ' + message;
+    message = name + STYLE_RESET + STYLE_GRAY + ' \u00BB ' + STYLE_RESET + message;
+
+    var messages = wrapStyledMessage(message, 320)
 
     // Send message to self
-    player.sendMessage(message);
+    for (var i = 0; i < messages.length; i++) {
+        player.sendMessage(messages[i]);
+    }
 
     // Get list of admins
     var adminList = JSON.parse(API.getIWorld(0).getStoredData("adminList") || '[]');
 
     // Send message to each admin
-    for(var i=0;i<adminList.length;i++) {
-        var admin = API.getPlayer(adminList[i]);
+    for(var j=0;j<adminList.length;j++) {
+        var admin = API.getPlayer(adminList[j]);
         if(!admin || admin === player ) { continue; }
-        admin.sendMessage(message);
+        for (var i = 0; i < messages.length; i++) {
+            admin.sendMessage(messages[i]);
+        }
     }
 
     // Get players in range
@@ -78,8 +84,10 @@ function chatCustom(event) {
     }
 
     // Send messages to all players in range
-    for(var j=0; j<nearbyPlayers.length; j++) {
-        if(isAdmin(nearbyPlayers[j])) { continue; }
-        nearbyPlayers[j].sendMessage(message);
+    for(var k=0; k<nearbyPlayers.length; k++) {
+        if(isAdmin(nearbyPlayers[k])) { continue; }
+        for (var i = 0; i < messages.length; i++) {
+            nearbyPlayers[k].sendMessage(messages[i]);
+        }
     }
 }

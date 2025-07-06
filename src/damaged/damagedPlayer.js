@@ -3,5 +3,5 @@ function damagedPlayer(event) {
     var damage = event.getDamage();
     if(player.getHealth() - damage > 0) { return; }
     event.setCancelled(true);
-    koPlayer(player);
+    koPlayer(player, damage);
 }

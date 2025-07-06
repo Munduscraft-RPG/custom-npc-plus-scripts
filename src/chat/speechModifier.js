@@ -51,7 +51,6 @@ function speechModifier(type, message) {
                 {from: "you", to: "yuw", probability: 0.5},
                 {from: "!", to: "!! uwu", probability: 0.6},
                 {from: ".", to: " uwu.", probability: 0.5},
-                // Add more rules as desired
             ];
             break;
 

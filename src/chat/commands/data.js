@@ -1,56 +1,58 @@
 function data(player, args) {
     checkAdmin(player);
 
-    switch(args.length) {
-        case 0:
-            var target;
+    if(args.length < 2) {
+        throw "invalid_usage";
+    }
 
-            // Get looking at entity
-            var lookingAt = player.getLookingAtEntities(3, 0, 0.5, true, true, true);
-            if(lookingAt.length === 0) { target = player } else { target = lookingAt[0] }
+    var subcommand = args[0];
+    var target = getPlayerByName(args[1]);
 
+    switch(subcommand) {
+        case 'get':
+            if(args.length !== 2) {
+                throw "invalid_usage";
+            }
             var storedDatas = target.getStoredDataKeys();
-            for(var i=0; i<storedDatas.length; i++ ) {
-                player.sendMessage(storedDatas[i]+': '+target.getStoredData(storedDatas[i]));
+            if(storedDatas.length === 0) {
+                player.sendMessage(STYLE_SUCCESS+'No stored data found for '+args[1]);
+            } else {
+                player.sendMessage(STYLE_SUCCESS+'Stored data for '+args[1])
+                for(var i = 0; i < storedDatas.length; i++) {
+                    var key = storedDatas[i];
+                    player.sendMessage(key + STYLE_RESET + STYLE_GRAY + ' \u00BB ' + STYLE_RESET + target.getStoredData(key));
+                }
             }
             return;
-        case 1:
-            if(args[0] == 'clear') {
-                player.clearStoredData();
-                return;
-            }
 
-            var target = getPlayerByName(args[0]);
-            var storedDatas = target.getStoredDataKeys();
-            for(var i=0; i<storedDatas.length; i++ ) {
-                player.sendMessage(storedDatas[i]+': '+target.getStoredData(storedDatas[i]));
+        case 'set':
+            if(args.length !== 4) {
+                throw "invalid_usage";
             }
+            var key = args[2];
+            var value = args[3];
+            target.setStoredData(key, value);
+            player.sendMessage(STYLE_SUCCESS + 'Set ' + STYLE_RESET + key + STYLE_SUCCESS + ' to ' + STYLE_RESET + value + STYLE_SUCCESS +' for ' + args[1]);
             return;
+
+        case 'remove':
+            if(args.length !== 3) {
+                throw "invalid_usage";
+            }
+            var key = args[2];
+            target.removeStoredData(key);
+            player.sendMessage(STYLE_SUCCESS + 'Removed key ' + STYLE_RESET + key + STYLE_RESET + STYLE_SUCCESS + ' from ' + args[1]);
+            return;
+
+        case 'clear':
+            if(args.length !== 2) {
+                throw "invalid_usage";
+            }
+            target.clearStoredData();
+            player.sendMessage(STYLE_SUCCESS + 'Cleared all stored data for ' + args[1]);
+            return;
+
         default:
-            switch(args[0]) {
-                case 'get':
-                    if(args.length !== 2){throw "invalid_usage";}
-                    var target = getPlayerByName(args[1]);
-                    var storedDatas = target.getStoredDataKeys();
-                    for(var i=0; i<storedDatas.length; i++ ) {
-                        player.sendMessage(storedDatas[i]+': '+target.getStoredData(storedDatas[i]));
-                    }
-                    return;
-                case 'set':
-                    if(args.length !== 4){throw "invalid_usage";}
-                    var target = getPlayerByName(args[1]);
-                    var key = args[2];
-                    var value = args[3];
-                    target.setStoredData(key, value);
-                    return;
-                case 'clear':
-                    if(args.length !== 2){throw "invalid_usage";}
-                    var target = getPlayerByName(args[1]);
-                    target.clearStoredData();
-                    return;
-
-                default:
-                    throw "invalid_usage";
-            }
+            throw "invalid_usage";
     }
 }

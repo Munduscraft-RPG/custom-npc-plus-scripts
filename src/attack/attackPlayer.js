@@ -1,0 +1,2 @@
+function attackPlayer(event) {
+}

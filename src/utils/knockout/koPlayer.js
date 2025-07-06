@@ -1,61 +1,67 @@
-function koPlayer(player){
+function koPlayer(player, damage){
+
+    // Dont KO players who are already KO
     if (player.hasStoredData('isKo')&&(player.getStoredData('isKo')==1)){return};
-    var koX = API.getIWorld(0).getStoredData('spawnX');
-    var koY = API.getIWorld(0).getStoredData('spawnY');
-    var koZ = API.getIWorld(0).getStoredData('spawnZ');
+
+    // Mark player as KO
+    player.setStoredData('isKo',1);
+
+    // Get KO time
+    kotime = 600 * damage
+
+    if(kotime > 6000) {
+        kotime = 6000
+    }
+
+    // Start a player timer
+    player.getTimers().start(9, kotime, false);
+
+    // Get spawn position
+    var spawnX = API.getIWorld(0).getStoredData('spawnX');
+    var spawnY = API.getIWorld(0).getStoredData('spawnY');
+    var spawnZ = API.getIWorld(0).getStoredData('spawnZ');
+
+    // Store KO position
+    player.setStoredData('KoX', player.getX())
+    player.setStoredData('KoY', player.getY())
+    player.setStoredData('KoZ', player.getZ())
+
+    // Store player hunger
+    player.setStoredData('pastHunger',player.getHunger());
+
+    // Store player saturation
+    player.setStoredData('pastSaturation', player.getSaturation()); //Save players saturation in the players data
+
+
+    // Get potion effects from the player entity
     var potionEffects = player.getMCEntity().func_70651_bq();
-    var iterator = potionEffects.iterator();
+
+    //Save potion effects to player data
+    var potionIterator = potionEffects.iterator();
     var potionIds = [];
     var potionAmps = [];
     var potionDurs = [];
-    var corpse = API.spawnNPC(API.getIWorld(player.getDimension()),player.getPosition());
-    var factions = API.getFactions().list();
-    var factionId = 0;
-    var factionName = '';
-    var minTime = 100;
-    var maxTime = 1000;
-    //Saves players current potion effects
-    while(iterator.hasNext()) {
-        var potionEffect = iterator.next();
+    while(potionIterator.hasNext()) {
+        var potionEffect = potionIterator.next();
         potionIds.push(potionEffect.func_76456_a());
         potionAmps.push(potionEffect.func_76458_c());
-        potionDurs.push(potionEffect.func_76459_b()/20);
+        potionDurs.push(potionEffect.func_76459_b() / 20);
     }
     player.setStoredData('potionIds', JSON.stringify(potionIds));
     player.setStoredData('potionAmps', JSON.stringify(potionAmps));
     player.setStoredData('potionDurs', JSON.stringify(potionDurs));
-    player.setStoredData('pastHunger',player.getHunger()); //Save players hunger when knocked out in the players data
-    player.setStoredData('pastSaturation', player.getSaturation()); //Save players saturation in the players data
-    player.setStoredData('isKo',1);
-    corpse.setJob(8);
-    for(var i=0; i<factions.size();++i){
-        if(factions[i].getName()=='corpse'){
-            factionId = factions[i].getId();
-            factionName = factions[i].getName();    
-        }
-    }
-    if(factionName == 'corpse'){
-        corpse.setFaction(factionId);
-    }
-    else{
-        var faction = API.getFactions().create('corpse', 2);
-        corpse.setFaction(faction.getId());
-        faction.setAttackedByMobs(false);
-        faction.setIsHidden(true);
-        faction.setNeutralPoints(0);
-        faction.setFriendlyPoints(1);
-        faction.setDefaultPoints(2);
-        faction.setColor(0);
-        faction.save();
-    }
-    corpse.setName(player.getName());
-    corpse.setAnimation(2);
-    player.setPosition(koX, koY, koZ, 0); //Teleports player to the ko/spawnroom
-    player.sendMessage(STYLE_FAILURE + 'you have been knocked out');
-    player.clearPotionEffects();
-    corpse.setSkinUrl('https://mineskin.eu/skin/'+player.getName());
-    corpse.updateAI();
-    corpse.updateClient();
-    corpse.getTimers().start(100, koRandomizer(minTime, maxTime), false); //Starts knockout timer
-    player.sendMessage(corpse.getTimers().has(100));
+
+    // Create the players sleeper
+    createSleeper(player);
+
+    // Send player to KO room and fix stats
+    player.setPosition(spawnX, spawnY, spawnZ, 0); //Teleports player to the ko/spawnroom
+    player.sendMessage(STYLE_FAILURE+'you have been knocked out for '+kotime/20+' seconds'); // Let the player know how long their knocked
+    adminBroadcast(STYLE_WARNING+player.getName()+' has been KO for '+kotime/20+' seconds');
+
+    player.extinguish(); // Stop burning
+    player.clearPotionEffects(); // Clear all potion effects
+    player.setHealth(20); //  Fill up health
+    player.setHunger(20); // Fill up hunger
+    player.addPotionEffect(23, 1000000, 255, true); // Give saturation to prevent hunger loss while KO
 } 
