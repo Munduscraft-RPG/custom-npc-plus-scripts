@@ -49,7 +49,7 @@ function chatCustom(event) {
     }
 
     // If the player is drunk, use drunk text distortion
-    if(player.hasStoredData('isTipsy') && player.getStoredData('isTipsy') === 1) {
+    if(player.hasStoredData('isTipsy') && player.getStoredData('isTipsy')) {
         message = speechModifier('tipsy', message);
     }
 
