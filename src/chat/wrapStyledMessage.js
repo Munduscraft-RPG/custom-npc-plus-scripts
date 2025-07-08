@@ -14,7 +14,7 @@ function getStringWidth(text, isBold) {
 }
 
 function wrapStyledMessage(message, maxPixelWidth) {
-    var styleRegex = /&[0-9a-frk-or]/i;
+    var styleRegex = /\u00a7[0-9a-frk-or]/i;
     var messages = [];
     var currentLine = '';
     var activeStyles = [];
@@ -44,9 +44,9 @@ function wrapStyledMessage(message, maxPixelWidth) {
     var wordBold = isBold;
 
     while (i < message.length) {
-        if (message.charAt(i) === '&' && i + 1 < message.length && styleRegex.test(message.substring(i, i + 2))) {
+        if (message.charAt(i) === '\u00a7' && i + 1 < message.length && (styleRegex).test(message.substring(i, i + 2))) {
             var code = message.charAt(i + 1).toLowerCase();
-            var fullCode = '&' + code;
+            var fullCode = '\u00a7' + code;
             i += 2;
 
             styleBuffer += fullCode;

@@ -13,11 +13,11 @@ function sayas(player, args) {
     var range;
 
     // Format chat and set range if yelling or whispering
-    if(YELL_REGEX.test(message)) {
+    if((YELL_REGEX).test(message)) {
         message = STYLE_YELL + message;
         message = message.replace(ALL_STYLE_RESET_REGEX, STYLE_YELL);
         range = YELL_RANGE;
-    } else if(WHISPER_REGEX.test(message)) {
+    } else if((WHISPER_REGEX).test(message)) {
         message= STYLE_WHISPER + message;
         message = message.replace(ALL_STYLE_RESET_REGEX, STYLE_WHISPER)
         range = WHISPER_RANGE;

@@ -5,14 +5,14 @@ function burn(player, args) {
     var burningSeconds;
     switch(args.length) {
         case 1:
-            if(!NUMERIC_REGEX.test(args[0])) { throw "invalid_usage"; }
+            if(!(NUMERIC_REGEX).test(args[0])) { throw "invalid_usage"; }
             burningSeconds = args[0] / 20;
             player.extinguish();
             player.setBurning(burningSeconds);
             player.sendMessage(STYLE_SUCCESS+'You are now burning for '+args[0]+' seconds');
             return;
         case 2:
-            if(!NUMERIC_REGEX.test(args[1])) { throw "invalid_usage"; }
+            if(!(NUMERIC_REGEX).test(args[1])) { throw "invalid_usage"; }
             burningSeconds = args[1] / 20;
             var targetPlayer = getPlayerByName(args[0]);
             player.extinguish();

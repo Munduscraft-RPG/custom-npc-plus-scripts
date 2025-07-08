@@ -6,7 +6,7 @@ function nick(player, args) {
         case 1:
 
             // Get nickname
-            var newNick = args[0].replace(/_/g, ' ');
+            var newNick = args[0].replace(/_/g, ' ').replace(/&/g, '\u00a7');
 
             // Store in player data
             player.setStoredData('nickname', newNick);
@@ -21,7 +21,7 @@ function nick(player, args) {
             var targetPlayer = getPlayerByName(args[0]);
 
             // Get nickname
-            var targetNick = args[1].replace(/_/g, ' ');
+            var targetNick = args[1].replace(/_/g, ' ').replace(/&/g, '\u00a7');
 
             // Store in player data
             targetPlayer.setStoredData('nickname', targetNick);

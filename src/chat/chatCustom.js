@@ -1,8 +1,9 @@
-var ALL_STYLE_RESET_REGEX = /&r/g;
-var YELL_REGEX = /^(?:(?:&[a-z])|[^a-z\n])*!.*$/;
+var ALL_STYLE_RESET_REGEX = /§r/g;
+var YELL_REGEX = /^(?:(?:§[a-z])|[^a-z\n])*!.*$/;
 var WHISPER_REGEX = /^[^A-Z!]*\.{3}$/;
 var NUMERIC_REGEX = /^-?\d+$/;
 var EMPHASIS_REGEX = /\/(.*?)\//g;
+var COMMAND_REGEX = new RegExp(/^\?[A-Za-z].*/g);
 
 // Speech Ranges
 var TALK_RANGE = 16;
@@ -10,6 +11,12 @@ var YELL_RANGE = 40;
 var WHISPER_RANGE = 3;
 
 function chatCustom(event) {
+    ALL_STYLE_RESET_REGEX.lastIndex = 0;
+    YELL_REGEX.lastIndex = 0;
+    WHISPER_REGEX.lastIndex = 0;
+    NUMERIC_REGEX.lastIndex = 0;
+    EMPHASIS_REGEX.lastIndex = 0;
+    COMMAND_REGEX.lastIndex = 0;
 
     //Get message string
     var message = event.getMessage();
@@ -18,7 +25,7 @@ function chatCustom(event) {
     var player = event.getPlayer();
 
     //Parse q commands separate from chat
-    if (message.startsWith('?')) {
+    if ((COMMAND_REGEX).test(message)) {
         commandParser(player, message);
         return;
     }
@@ -30,11 +37,11 @@ function chatCustom(event) {
     var range;
 
     // Format chat and set range if yelling or whispering
-    if(YELL_REGEX.test(message)) {
+    if((YELL_REGEX).test(message)) {
         message = STYLE_YELL + message;
         message = message.replace(ALL_STYLE_RESET_REGEX, STYLE_YELL);
         range = YELL_RANGE;
-    } else if(WHISPER_REGEX.test(message)) {
+    } else if((WHISPER_REGEX).test(message)) {
         message= STYLE_WHISPER + message;
         message = message.replace(ALL_STYLE_RESET_REGEX, STYLE_WHISPER)
         range = WHISPER_RANGE;
@@ -60,7 +67,7 @@ function chatCustom(event) {
 
     // Send message to self
     for (var i = 0; i < messages.length; i++) {
-        player.sendMessage(messages[i]);
+        addChatMessage(player, messages[i]);
     }
 
     // Get list of admins
@@ -71,7 +78,7 @@ function chatCustom(event) {
         var admin = API.getPlayer(adminList[j]);
         if(!admin || admin === player ) { continue; }
         for (var i = 0; i < messages.length; i++) {
-            admin.sendMessage(messages[i]);
+            addChatMessage(admin, messages[i]);
         }
     }
 
@@ -87,7 +94,7 @@ function chatCustom(event) {
     for(var k=0; k<nearbyPlayers.length; k++) {
         if(isAdmin(nearbyPlayers[k])) { continue; }
         for (var i = 0; i < messages.length; i++) {
-            nearbyPlayers[k].sendMessage(messages[i]);
+            addChatMessage(nearbyPlayers[k], messages[i]);
         }
     }
 }
